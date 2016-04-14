@@ -1,0 +1,23 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.aqua</groupId>
+    <artifactId>aqua-base</artifactId>
+    <version>1.0.0</version>
+  </parent>
+  <artifactId>aqua-craft-component-win</artifactId>
+  <build>
+  <resources>
+  <resource>
+  <directory></directory>
+  </resource>
+  </resources>
+  </build>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.aqua</groupId>
+  		<artifactId>aqua-framework</artifactId>
+  		<version>1.0.0</version>
+  	</dependency>
+  </dependencies>
+</project>
