@@ -9,4 +9,26 @@
 		<artifactId>aqua-editor-parent</artifactId>
 		<version>1.0.0</version>
 	</parent>
+	<dependencies>
+		<dependency>
+			<groupId>org.aqua</groupId>
+			<artifactId>aqua-libs-struct-apis</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aqua</groupId>
+			<artifactId>aqua-framework-core</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aqua</groupId>
+			<artifactId>aqua-libs-struct-galaxy</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aqua</groupId>
+			<artifactId>aqua-libs-win</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+	</dependencies>
 </project>
