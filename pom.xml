@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.aqua</groupId>
-	<artifactId>aqua-base</artifactId>
+	<artifactId>aqua-parent</artifactId>
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
 	<build>
@@ -51,11 +51,5 @@
 		</dependency>
 	</dependencies>
 	<modules>
-		<module>aqua-framework-win</module>
-		<module>aqua-monitor-win</module>
-		<module>aqua-craft-libs</module>
-		<module>aqua-craft-struct</module>
-		<module>aqua-framework</module>
-		<module>aqua-craft-component-win</module>
 	</modules>
 </project>
