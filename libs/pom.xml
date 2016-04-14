@@ -3,13 +3,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>aqua-libs-parent</artifactId>
   <modules>
-    <module>aqua-libs-common</module>
-    <module>aqua-libs-struct-parent</module>
+    <module>common</module>
+    <module>struct</module>
+	<module>win</module>
   </modules>
 	<packaging>pom</packaging>
 	<parent>
 		<groupId>org.aqua</groupId>
-		<artifactId>aqua-craft-parent</artifactId>
+		<artifactId>aquacraft-parent</artifactId>
 		<version>1.0.0</version>
 	</parent>
 </project>

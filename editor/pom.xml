@@ -4,11 +4,11 @@
 	<artifactId>aqua-editor-parent</artifactId>
 	<packaging>pom</packaging>
 	<modules>
-	<module>aqua-monitor-win</module>
+	<module>monitor-win</module>
 	</modules>
 	<parent>
 		<groupId>org.aqua</groupId>
-		<artifactId>aqua-craft-parent</artifactId>
+		<artifactId>aquacraft-parent</artifactId>
 		<version>1.0.0</version>
 	</parent>
 </project>
