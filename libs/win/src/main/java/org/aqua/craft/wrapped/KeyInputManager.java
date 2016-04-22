@@ -1,4 +1,4 @@
-package org.aqua.craft.component;
+package org.aqua.craft.wrapped;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

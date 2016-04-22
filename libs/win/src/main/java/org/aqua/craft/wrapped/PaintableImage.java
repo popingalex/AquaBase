@@ -1,4 +1,4 @@
-package org.aqua.craft.component.wrapped;
+package org.aqua.craft.wrapped;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;

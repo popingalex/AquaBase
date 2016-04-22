@@ -1,4 +1,4 @@
-package org.aqua.craft.component.craft;
+package org.aqua.craft.component;
 
 import java.awt.Container;
 import java.awt.Graphics;
@@ -13,9 +13,9 @@ import javax.swing.JPanel;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.aqua.craft.component.KeyInputManager;
-import org.aqua.craft.component.MouseInputManager;
-import org.aqua.craft.component.wrapped.PaintableImage;
+import org.aqua.craft.wrapped.KeyInputManager;
+import org.aqua.craft.wrapped.MouseInputManager;
+import org.aqua.craft.wrapped.PaintableImage;
 import org.aqua.framework.event.EventManager;
 import org.aqua.framework.ui.Constants;
 import org.aqua.framework.ui.event.ContainerEvent;
@@ -51,7 +51,7 @@ public class SwingContainer implements IContainer, Constants {
             }
             @Override
             public void windowClosed(WindowEvent e) {
-                eventManager.handleEvent(new ContainerEvent(ContainerEvent.CONTAINER_CLOSED));
+                eventManager.handleEvent(new ContainerEvent(ContainerEvent.CLOSED));
             }
         });
         keyManager = new KeyInputManager();

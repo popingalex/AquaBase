@@ -21,6 +21,10 @@ public final class Channel {
         return (planet == ports[0]) || (planet == ports[1]);
     }
 
+    public Planet getOne(int index) {
+        return ports[index];
+    }
+
     public Planet getAnother(Planet one) {
         if (above(one)) {
             return (one == ports[0]) ? ports[1] : ports[0];

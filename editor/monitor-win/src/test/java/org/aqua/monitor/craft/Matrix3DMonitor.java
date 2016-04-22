@@ -2,12 +2,15 @@ package org.aqua.monitor.craft;
 
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
-import org.aqua.craft.component.craft.j3d.BoxNode;
-import org.aqua.craft.component.craft.j3d.J3DUniverse;
-import org.aqua.craft.component.wrapper.IComponent;
+import org.aqua.craft.component.j3d.BoxNode;
+import org.aqua.craft.component.j3d.CursorNode;
+import org.aqua.craft.component.j3d.J3DUniverse;
+import org.aqua.craft.wrapper.IComponent;
 import org.aqua.framework.event.EventHandler;
 import org.aqua.framework.event.EventManager;
 import org.aqua.framework.event.IEventListener;
@@ -17,6 +20,7 @@ import org.aqua.struct.IContent;
 import org.aqua.struct.galaxy.Channel;
 import org.aqua.struct.galaxy.Galaxy.DepthCruiser;
 import org.aqua.struct.galaxy.Planet;
+import org.aqua.struct.galaxy.matrix.Element;
 import org.aqua.struct.galaxy.matrix.Matrix;
 
 public class Matrix3DMonitor extends AbstractMonitor<Matrix, Planet> implements IEventListener {
@@ -66,15 +70,35 @@ public class Matrix3DMonitor extends AbstractMonitor<Matrix, Planet> implements 
     }
     @EventHandler
     public void refresh(ContainerEvent event) {
-        if (ContainerEvent.CONTAINER_REFRESH == event.type) {
-            System.out.println("fresh");
+        if (ContainerEvent.REFRESH == event.type) {
             cruiser.cruise(cursor);
-            System.out.println(cruiser.getCollection());
-            BoxNode node = new BoxNode();
-            node.setCoord3(new int[3]);
-            node.deserialize(0);
             universe.display("model", null);
-            universe.display("model", node);
+            int[] coord3 = new int[3];
+            Set<Channel> channels = new HashSet<Channel>();
+            for (Planet planet : cruiser.getCollection()) {
+                channels.addAll(planet.channels);
+                BoxNode node = new BoxNode();
+                int[] pos = ((Element) planet).coords;
+                System.arraycopy(pos, 0, coord3, 0, pos.length);
+                node.setCoord3(coord3);
+                if (null == planet.content) {
+                    node.deserialize(0);
+                } else {
+                    node.deserialize(1);
+                }
+                universe.display("model", node);
+            }
+            universe.display("channel", null);
+            int[] coord32 = new int[3];
+            for (Channel channel : channels) {
+                CursorNode node = new CursorNode();
+                Element one = ((Element) channel.getOne(0));
+                System.arraycopy(one.coords, 0, coord3, 0, one.coords.length);
+                one = ((Element) channel.getOne(1));
+                System.arraycopy(one.coords, 0, coord32, 0, one.coords.length);
+                node.setCoord3(coord3, coord32);
+                universe.display("channel", node);
+            }
         }
     }
 }

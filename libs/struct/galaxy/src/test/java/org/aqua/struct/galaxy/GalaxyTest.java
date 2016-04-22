@@ -1,14 +1,14 @@
-package org.aqua.monitor;
+package org.aqua.struct.galaxy;
 
-import org.aqua.monitor.craft.Matrix3DMonitor;
-import org.aqua.struct.galaxy.matrix.Matrix;
+import static org.junit.Assert.*;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class MonitorTest {
+public class GalaxyTest {
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -28,10 +28,7 @@ public class MonitorTest {
 
     @Test
     public void test() {
-        MonitorManager manager = MonitorManager.getInstance();
-        manager.registerSubject(new Matrix3DMonitor(new Matrix(2)));
-        manager.registerSubject(new Matrix(3));
-        manager.show();
+        fail("Not yet implemented");
     }
 
 }

@@ -11,7 +11,7 @@ import org.aqua.struct.galaxy.Galaxy;
 import org.aqua.struct.galaxy.Planet;
 
 public class Matrix extends Galaxy implements Constants {
-    protected final static Logger    log = LogManager.getLogger(Matrix.class);
+    protected final static Logger    logger = LogManager.getLogger(Matrix.class);
     public final int                 dimens;
     public final int[]               lower;
     public final int[]               upper;
@@ -51,6 +51,7 @@ public class Matrix extends Galaxy implements Constants {
     }
     @Operator(type = Operator.Type.OTHERS)
     public final void realloc(int[] lower, int[] upper) {
+        logger.debug("realloc:" + Arrays.toString(lower) + "," + Arrays.toString(upper));
         for (int i = 0; i < dimens; i++) {
             lower[i] = Math.min(lower[i], 0);
             upper[i] = Math.max(upper[i], 0);
@@ -74,7 +75,7 @@ public class Matrix extends Galaxy implements Constants {
     private void removeSurface(int surface, int normal) {
         int[] lower = this.lower.clone();
         int[] upper = this.upper.clone();
-        lower[normal] = upper[normal] = surface;
+        lower[normal % dimens] = upper[normal % dimens] = surface;
         matrixCruiser.cruise(lower, upper);
         for (Planet planet : matrixCruiser.getCollection()) {
             Element parent = (Element) planet;
@@ -93,13 +94,14 @@ public class Matrix extends Galaxy implements Constants {
     private void attachSurface(int surface, int normal) {
         int[] lower = this.lower.clone();
         int[] upper = this.upper.clone();
-        lower[normal] = upper[normal] = surface;
+        lower[normal % dimens] = upper[normal % dimens] = surface;
         matrixCruiser.cruise(lower, upper);
         int inverseNormal = (normal + dimens) % (2 * dimens);
+        logger.debug("attaching on:" + matrixCruiser.getCollection());
         for (Planet planet : matrixCruiser.getCollection()) {
             Element parent = (Element) planet;
             int[] offset = parent.coords.clone();
-            offset[normal % dimens] += surface > 0 ? 1 : -1;
+            offset[normal % dimens] += normal < dimens ? 1 : -1;
             Element nova = (parent.rounds[normal] = new Element(offset));
             nova.rounds[inverseNormal] = parent;
             Channel channel = attachingPlanet(nova, parent);

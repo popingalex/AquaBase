@@ -1,4 +1,4 @@
-package org.aqua.craft.component.wrapper;
+package org.aqua.craft.wrapper;
 
 import java.awt.Component;
 

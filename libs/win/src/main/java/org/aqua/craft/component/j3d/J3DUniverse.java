@@ -1,4 +1,4 @@
-package org.aqua.craft.component.craft.j3d;
+package org.aqua.craft.component.j3d;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -23,7 +23,7 @@ import javax.vecmath.Quat4d;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
 
-import org.aqua.craft.component.wrapper.IComponent;
+import org.aqua.craft.wrapper.IComponent;
 import org.aqua.framework.ui.wrapper.IPaintable;
 
 import com.sun.j3d.utils.behaviors.mouse.MouseRotate;

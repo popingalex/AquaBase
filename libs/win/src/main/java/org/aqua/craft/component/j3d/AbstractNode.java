@@ -1,4 +1,4 @@
-package org.aqua.craft.component.craft.j3d;
+package org.aqua.craft.component.j3d;
 
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.Group;
@@ -13,7 +13,7 @@ public class AbstractNode extends BranchGroup implements IContent {
     public static float      unit           = 1f;
     protected TransformGroup transformGroup = new TransformGroup();
     protected int            data;
-    private int[]            coord3         = new int[3];
+    protected int[]          coord3         = new int[3];
 
     public AbstractNode() {
         transformGroup.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
@@ -35,8 +35,8 @@ public class AbstractNode extends BranchGroup implements IContent {
     public final void setCoord3(int[] coord3) {
         this.coord3 = coord3.clone();
         Transform3D trans = new Transform3D();
-        trans.setTranslation(new Vector3d(this.coord3[1] * unit, this.coord3[0] * unit,
-                this.coord3[2] * unit));
+        Vector3d vector = new Vector3d(coord3[0] * unit, coord3[2] * unit, coord3[1] * unit);
+        trans.setTranslation(vector);
         transformGroup.setTransform(trans);
     }
 

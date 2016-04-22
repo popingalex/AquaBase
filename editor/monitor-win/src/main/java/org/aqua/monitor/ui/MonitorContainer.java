@@ -16,10 +16,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.aqua.craft.component.craft.ControlPanel;
-import org.aqua.craft.component.craft.StructTree;
-import org.aqua.craft.component.craft.SwingContainer;
-import org.aqua.craft.component.wrapper.IComponent;
+import org.aqua.craft.component.ControlPanel;
+import org.aqua.craft.component.StructTree;
+import org.aqua.craft.component.SwingContainer;
+import org.aqua.craft.wrapper.IComponent;
 import org.aqua.framework.ui.event.ContainerEvent;
 import org.aqua.framework.ui.wrapper.IPaintable;
 import org.aqua.monitor.AbstractMonitor;
@@ -106,6 +106,6 @@ public class MonitorContainer extends SwingContainer implements ChangeListener, 
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        eventManager.handleEvent(new ContainerEvent(ContainerEvent.CONTAINER_REFRESH));
+        eventManager.handleEvent(new ContainerEvent(ContainerEvent.REFRESH));
     }
 }

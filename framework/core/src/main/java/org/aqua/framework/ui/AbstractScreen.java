@@ -28,7 +28,7 @@ public abstract class AbstractScreen implements IEventListener, Constants {
     }
     @EventHandler
     public void handleContainerEvent(ContainerEvent event) {
-        if (ContainerEvent.CONTAINER_CLOSED == event.type) {
+        if (ContainerEvent.CLOSED == event.type) {
             logger.debug("contianer closed");
             System.exit(0);
         }

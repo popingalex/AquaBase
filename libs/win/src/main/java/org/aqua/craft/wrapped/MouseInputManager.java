@@ -1,4 +1,4 @@
-package org.aqua.craft.component;
+package org.aqua.craft.wrapped;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

@@ -1,10 +1,10 @@
-package org.aqua.craft.component.craft;
+package org.aqua.craft.component;
 
 import java.awt.Component;
 
 import javax.swing.JTree;
 
-import org.aqua.craft.component.wrapper.IComponent;
+import org.aqua.craft.wrapper.IComponent;
 import org.aqua.framework.ui.wrapper.IPaintable;
 
 public class StructTree extends JTree implements IComponent {

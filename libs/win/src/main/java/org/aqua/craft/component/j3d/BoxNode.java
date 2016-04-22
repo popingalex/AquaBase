@@ -1,4 +1,4 @@
-package org.aqua.craft.component.craft.j3d;
+package org.aqua.craft.component.j3d;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -50,8 +50,8 @@ public class BoxNode extends AbstractNode {
 
     public BoxNode() {
         super();
-        float unit = BoxNode.unit / 5;
-        box = new Box(unit / 2, unit / 2, unit / 2, Box.GENERATE_TEXTURE_COORDS, null);
+        float size = unit / 4;
+        box = new Box(size / 2, size / 2, size / 2, Box.GENERATE_TEXTURE_COORDS, null);
         //        box.setCapability(Shape3D.ALLOW_APPEARANCE_WRITE);
         app = new Appearance();
         app.setCapability(Appearance.ALLOW_TEXTURE_WRITE);

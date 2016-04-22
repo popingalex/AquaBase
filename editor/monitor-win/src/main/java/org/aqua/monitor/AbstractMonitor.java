@@ -2,7 +2,7 @@ package org.aqua.monitor;
 
 import java.util.List;
 
-import org.aqua.craft.component.wrapper.IComponent;
+import org.aqua.craft.wrapper.IComponent;
 import org.aqua.struct.IContent;
 
 public abstract class AbstractMonitor<Subject, Node> {
