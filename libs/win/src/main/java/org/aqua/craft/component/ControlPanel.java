@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -111,6 +110,7 @@ public class ControlPanel extends JPanel implements IComponent, ActionListener {
             Class<?> type = parameterTypes[i];
             Object input = inputs.get(i);
             Object output = input;
+            // TODO reflections shouldent be here
             if (type.isArray()) {
                 Class<?>[] pTypes = new Class[((List<?>) input).size()];
                 Arrays.fill(pTypes, type.getComponentType());

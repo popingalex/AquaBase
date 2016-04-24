@@ -1,13 +1,10 @@
 package org.aqua.craft.component.j3d;
 
-import java.util.Arrays;
-
 import javax.media.j3d.Appearance;
 import javax.media.j3d.Transform3D;
 import javax.media.j3d.TransparencyAttributes;
 import javax.vecmath.AxisAngle4d;
 import javax.vecmath.Point3d;
-import javax.vecmath.Tuple3i;
 import javax.vecmath.Vector3d;
 
 import com.sun.j3d.utils.geometry.Box;
@@ -61,15 +58,12 @@ public class CursorNode extends AbstractNode {
         //        scale.x = 0 == scale.x ? 1 : scale.x * 8;
         //        scale.y = 0 == scale.y ? 1 : scale.y * 8;
         //        scale.z = 0 == scale.z ? 1 : scale.z * 8;
-        System.out.println("from:" + Arrays.toString(one) + "to:" + Arrays.toString(another));
         Transform3D trans = new Transform3D();
         transformGroup.getTransform(trans);
-        System.out.println("scale:" + scale);
         trans.setScale(scale);
         Vector3d offset = new Vector3d();
         offset.add(p1, p2);
         offset.scale(0.5);
-        System.out.println("offset:" + offset);
         trans.setTranslation(offset);
 
         Vector3d normalX = new Vector3d(1, 0, 0);

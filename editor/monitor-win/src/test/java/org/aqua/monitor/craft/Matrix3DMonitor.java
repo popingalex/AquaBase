@@ -18,8 +18,10 @@ import org.aqua.framework.ui.event.ContainerEvent;
 import org.aqua.monitor.AbstractMonitor;
 import org.aqua.struct.IContent;
 import org.aqua.struct.galaxy.Channel;
+import org.aqua.struct.galaxy.Galaxy;
 import org.aqua.struct.galaxy.Galaxy.DepthCruiser;
 import org.aqua.struct.galaxy.Planet;
+import org.aqua.struct.galaxy.hexgon.Hexgon;
 import org.aqua.struct.galaxy.matrix.Element;
 import org.aqua.struct.galaxy.matrix.Matrix;
 
@@ -93,6 +95,15 @@ public class Matrix3DMonitor extends AbstractMonitor<Matrix, Planet> implements 
             for (Channel channel : channels) {
                 CursorNode node = new CursorNode();
                 Element one = ((Element) channel.getOne(0));
+                int flag = Galaxy.FLAG_TREE;
+                flag = Matrix.FLAG_MATRIX;
+                flag = Hexgon.FLAG_HEX;
+                Integer weight = (Integer) channel.getWeight(one, flag);
+                if (null == weight) {
+                    continue;
+                    //                } else if (weight < 2) {
+                    //                    continue;
+                }
                 System.arraycopy(one.coords, 0, coord3, 0, one.coords.length);
                 one = ((Element) channel.getOne(1));
                 System.arraycopy(one.coords, 0, coord32, 0, one.coords.length);

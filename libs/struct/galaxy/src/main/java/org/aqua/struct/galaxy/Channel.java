@@ -8,7 +8,16 @@ import org.aqua.struct.Caster;
 public final class Channel {
     private Planet[]    ports   = new Planet[2];
     private Map<?, ?>[] weights = new Map<?, ?>[2];
-    public Channel(Planet one, Planet another) {
+    public static Channel channel(Planet one, Planet another) {
+        for (Channel channel : one.channels) {
+            if (another == channel.getAnother(one)) {
+                return channel;
+            }
+        }
+        return new Channel(one, another);
+    }
+
+    private Channel(Planet one, Planet another) {
         ports[0] = one;
         ports[1] = another;
         weights[0] = new HashMap<Object, Object>();

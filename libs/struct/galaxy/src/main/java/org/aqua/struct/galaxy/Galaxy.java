@@ -1,5 +1,6 @@
 package org.aqua.struct.galaxy;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,8 +11,9 @@ import org.aqua.struct.Operator;
 import org.aqua.struct.Subject;
 
 @Subject(type = Subject.Type.STRUCT)
-public class Galaxy implements Constants {
-    protected final static Logger log = LogManager.getLogger(Galaxy.class);
+public class Galaxy {
+    protected final static Logger log       = LogManager.getLogger(Galaxy.class);
+    public final static Integer   FLAG_TREE = -100;
     protected Planet              center;
     protected Planet              cursor;
 
@@ -44,7 +46,7 @@ public class Galaxy implements Constants {
         nova.content = attachingContent(nova);
         if (null != parent) {
             log.debug("attach nova " + nova + "->" + parent);
-            Channel channel = new Channel(parent, nova);
+            Channel channel = Channel.channel(parent, nova);
             channel.setWeight(parent, 1, FLAG_TREE);
             channel.setWeight(nova, -1, FLAG_TREE);
             return channel;
@@ -57,7 +59,7 @@ public class Galaxy implements Constants {
 
     protected void removingPlanet(Planet parent, Planet planet, IContent content) {
         log.debug("remove planet " + planet + "-//-" + parent);
-        for (Channel channel : planet.channels) {
+        for (Channel channel : new HashSet<Channel>(planet.channels)) {
             log.debug("discon planet " + planet + "-//-" + channel.getAnother(planet));
             planet.channels.remove(channel);
             channel.getAnother(planet).channels.remove(channel);

@@ -1,6 +1,8 @@
 package org.aqua.struct.galaxy.matrix;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,8 +12,9 @@ import org.aqua.struct.galaxy.Channel;
 import org.aqua.struct.galaxy.Galaxy;
 import org.aqua.struct.galaxy.Planet;
 
-public class Matrix extends Galaxy implements Constants {
-    protected final static Logger    logger = LogManager.getLogger(Matrix.class);
+public class Matrix extends Galaxy {
+    protected final static Logger    logger      = LogManager.getLogger(Matrix.class);
+    public final static Integer      FLAG_MATRIX = FLAG_TREE - 1;
     public final int                 dimens;
     public final int[]               lower;
     public final int[]               upper;
@@ -91,41 +94,45 @@ public class Matrix extends Galaxy implements Constants {
         Arrays.fill(((Element) planet).rounds, null);
     }
 
-    private void attachSurface(int surface, int normal) {
+    protected List<Element> attachSurface(int surface, int normal) {
         int[] lower = this.lower.clone();
         int[] upper = this.upper.clone();
         lower[normal % dimens] = upper[normal % dimens] = surface;
         matrixCruiser.cruise(lower, upper);
         int inverseNormal = (normal + dimens) % (2 * dimens);
         logger.debug("attaching on:" + matrixCruiser.getCollection());
-        for (Planet planet : matrixCruiser.getCollection()) {
+        int dimen = normal % dimens;
+        int extend = normal < dimens ? 1 : -1;
+        for (Planet planet : matrixCruiser.getCollection()) {   // yield new surface
             Element parent = (Element) planet;
-            int[] offset = parent.coords.clone();
-            offset[normal % dimens] += normal < dimens ? 1 : -1;
-            Element nova = (parent.rounds[normal] = new Element(offset));
+            int[] offsets = parent.coords.clone();
+            offsets[dimen] += extend;
+            Element nova = (parent.rounds[normal] = new Element(offsets));
             nova.rounds[inverseNormal] = parent;
-            Channel channel = attachingPlanet(nova, parent);
+            attachingPlanet(nova, parent);
+        }
+        List<Element> novaCollection = new LinkedList<Element>();
+        for (Planet planet : matrixCruiser.getCollection()) {   // link new with surface
+            Element parent = (Element) planet;
+            Element nova = ((Element) planet).rounds[normal];
+            novaCollection.add(nova);
+            for (Channel channel : parent.channels) {
+                Integer offset = (Integer) channel.getWeight(parent, FLAG_MATRIX);
+                if (null != offset && normal != offset && inverseNormal != offset) {
+                    Element round = nova.rounds[offset] = parent.rounds[offset].rounds[normal];
+                    channel = Channel.channel(nova, round);
+                    channel.setWeight(nova, offset, FLAG_MATRIX);
+                    //                    if (dimens > entry.getKey()) {  // TODO pos only, prevent from duplicating.
+                    //                    channel.setWeight(round, inverseOffset, FLAG_MATRIX);
+                }
+            }
+            Channel channel = Channel.channel(nova, parent);
             channel.setWeight(parent, normal, FLAG_MATRIX);
             channel.setWeight(nova, inverseNormal, FLAG_MATRIX);
         }
-        for (Planet planet : matrixCruiser.getCollection()) {
-            Element parent = (Element) planet;
-            for (Channel channel : planet.channels) {
-                int weight = (Integer) channel.getWeight(planet, FLAG_MATRIX);
-                if (weight != normal && weight != inverseNormal) {
-                    Element nova = parent.rounds[normal];
-                    Element round = parent.rounds[weight].rounds[normal];
-                    nova.rounds[weight] = round;
-                    // 建立两点之间的channel, 不应重复!
-                    if (dimens > weight) {  // pos normal only prevent from duplicated.
-                        Channel c = new Channel(nova, round);
-                        c.setWeight(nova, weight, FLAG_MATRIX);
-                        c.setWeight(round, weight + dimens, FLAG_MATRIX);
-                    }
-                }
-            }
-        }
+        return novaCollection;
     }
+
     /** @return -1 for out ,0 on, 1 in */
     public static int covers(int[] lower, int[] coords, int[] upper) {
         boolean edge = false;
