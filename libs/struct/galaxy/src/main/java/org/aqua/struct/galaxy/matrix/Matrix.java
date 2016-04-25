@@ -13,8 +13,8 @@ import org.aqua.struct.galaxy.Galaxy;
 import org.aqua.struct.galaxy.Planet;
 
 public class Matrix extends Galaxy {
-    protected final static Logger    logger      = LogManager.getLogger(Matrix.class);
-    public final static Integer      FLAG_MATRIX = FLAG_TREE - 1;
+    protected static final Logger    logger      = LogManager.getLogger(Matrix.class);
+    public static final Integer      FLAG_MATRIX = FLAG_TREE - 1;
     public final int                 dimens;
     public final int[]               lower;
     public final int[]               upper;

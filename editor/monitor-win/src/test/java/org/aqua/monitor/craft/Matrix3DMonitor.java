@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.aqua.craft.component.j3d.BoxNode;
-import org.aqua.craft.component.j3d.CursorNode;
+import org.aqua.craft.component.j3d.RodNode;
 import org.aqua.craft.component.j3d.J3DUniverse;
 import org.aqua.craft.wrapper.IComponent;
 import org.aqua.framework.event.EventHandler;
@@ -21,7 +21,7 @@ import org.aqua.struct.galaxy.Channel;
 import org.aqua.struct.galaxy.Galaxy;
 import org.aqua.struct.galaxy.Galaxy.DepthCruiser;
 import org.aqua.struct.galaxy.Planet;
-import org.aqua.struct.galaxy.hexgon.Hexgon;
+import org.aqua.struct.galaxy.hexgon.Hexagon;
 import org.aqua.struct.galaxy.matrix.Element;
 import org.aqua.struct.galaxy.matrix.Matrix;
 
@@ -93,11 +93,11 @@ public class Matrix3DMonitor extends AbstractMonitor<Matrix, Planet> implements 
             universe.display("channel", null);
             int[] coord32 = new int[3];
             for (Channel channel : channels) {
-                CursorNode node = new CursorNode();
+                RodNode node = new RodNode();
                 Element one = ((Element) channel.getOne(0));
                 int flag = Galaxy.FLAG_TREE;
                 flag = Matrix.FLAG_MATRIX;
-                flag = Hexgon.FLAG_HEX;
+                flag = Hexagon.FLAG_HEXAGON;
                 Integer weight = (Integer) channel.getWeight(one, flag);
                 if (null == weight) {
                     continue;

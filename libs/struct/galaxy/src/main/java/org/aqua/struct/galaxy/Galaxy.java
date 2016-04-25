@@ -12,8 +12,8 @@ import org.aqua.struct.Subject;
 
 @Subject(type = Subject.Type.STRUCT)
 public class Galaxy {
-    protected final static Logger log       = LogManager.getLogger(Galaxy.class);
-    public final static Integer   FLAG_TREE = -100;
+    protected static final Logger log       = LogManager.getLogger(Galaxy.class);
+    public static final Integer   FLAG_TREE = -100;
     protected Planet              center;
     protected Planet              cursor;
 
