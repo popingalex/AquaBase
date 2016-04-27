@@ -3,7 +3,7 @@ package org.aqua.struct.galaxy;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.aqua.struct.Caster;
+import org.aqua.Caster;
 
 public final class Channel {
     private Planet[]    ports   = new Planet[2];

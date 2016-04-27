@@ -15,5 +15,10 @@
 			<artifactId>aqua-libs-struct-apis</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.aqua</groupId>
+			<artifactId>aqua-libs-common</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 </project>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aquabase>
+	<base>
+		<launcher id="scene_main" />
+	</base>
+	<screens>
+		<screen id="screen_main">
+		</screen>
+	</screens>
+	<scenes>
+		<scene title="scene_main">
+			<class>org.aqua.scene.MainScene</class>
+			<container id="screen_main" />
+		</scene>
+		<scene title="scene_play">
+			<class>org.aqua.scene.PlayScene</class>
+			<container id="screen_main" />
+		</scene>
+	</scenes>
+</aquabase>

@@ -1,4 +1,4 @@
-package org.aqua.struct;
+package org.aqua;
 
 public class Caster {
     @SuppressWarnings("unchecked")
