@@ -1,4 +1,4 @@
-package org.aqua.struct.galaxy.hexgon;
+package org.aqua.struct.galaxy.hexagon;
 
 import java.util.HashSet;
 import java.util.List;
